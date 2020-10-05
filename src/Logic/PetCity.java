@@ -15,8 +15,8 @@ public class PetCity {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Prueba VSCode");
+        System.out.println("Prueba");
         // TODO code application logic here
+        System.out.println("PruebaIvanna");
     }
-    
 }
