@@ -5,6 +5,8 @@
  */
 package Data;
 
+import sun.jvm.hotspot.utilities.memo.MemoizedObject;
+
 /**
  *
  * @author ASUS PC
@@ -25,6 +27,7 @@ class StackArray<T>{
         
     public boolean isEmpty(){
         return top <= 0;
+
     }
         
     public boolean isFull(){
