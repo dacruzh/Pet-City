@@ -30,10 +30,12 @@ public class Menu {
     public static int primerMenu(){
         int num=0;
         while (num==0){
-            System.out.println("Bienvenido a Pet City");
-            System.out.println("Si usted desea adoptar una mascota, marque 1");
-            System.out.println("Si usted es funcionario del refugio, marque 2");
-            System.out.println("Si usted desea salir, marque 3");
+            System.out.println("=======================================");
+            System.out.println("        BIENVENIDO A PET CITY");
+            System.out.println("=======================================\nIngrese una de las siguientes opciones:");
+            System.out.println("1. Si desea adoptar una mascota");
+            System.out.println("2. Si usted es funcionario del refugio");
+            System.out.println("3. Salir");
             num = tryCatchMenu(3);
         }
         return num;
@@ -41,9 +43,10 @@ public class Menu {
     public static int segundoMenu(){
         int num=0;
         while(num==0){
-            System.out.println("Si usted está registrado, marque 1");
-            System.out.println("Si usted no está registardo, marque 2");
-            System.out.println("Si quiere volver al menu anterior, marque 3");
+            System.out.println("Marque una de las siguientes opciones:");
+            System.out.println("1. Si usted está registrado");
+            System.out.println("2. Si usted no está registardo");
+            System.out.println("3. Volver al menú anterior");
             num = tryCatchMenu(3);
         }
         return num; 
@@ -52,8 +55,11 @@ public class Menu {
     public static int tercerMenu(){
         int num =0;
         while(num==0){
-            System.out.println("Si desea registrar una mascota nueva, marque 1");
-            System.out.println("Si desea regresar, marque 2");
+            System.out.println("=======================================");
+            System.out.println("           Menú del refugio");
+            System.out.println("=======================================\nIngrese una de las siguientes opciones:");
+            System.out.println("1. Registrar una mascota");            
+            System.out.println("2. Regresar al menú anterior");
             num= tryCatchMenu(2);
         }
         return num; 
