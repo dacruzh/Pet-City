@@ -5,8 +5,6 @@
  */
 package Data;
 
-import sun.jvm.hotspot.utilities.memo.MemoizedObject;
-
 /**
  *
  * @author ASUS PC
