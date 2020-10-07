@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 package Logic;
-import java.io.*;
-import java.util.Scanner;
-
-import Data.LinkedQueue;
-import Data.Mascota;
+//import java.io.*;
 import Interfaz.*;
+import Data.*;
 /**
  *
  * @author ASUS PC
@@ -43,7 +40,8 @@ public class PetCity {
                         case 3:
                         break;
                     } 
-                } 
+                }
+                opcion2 = 0; 
             break;
 
             case 2:
@@ -52,15 +50,20 @@ public class PetCity {
                     switch(opcion3)
                     {   
                         case 1:
-                            Mascota animal=Menu.regMascota();
-                            mascotas.enqueue(animal);
+                        Mascota animal = Logica.regMascota();
+                        mascotas.enqueue(animal);
                         break;
                         case 2:
+                        mascotas.imprimirTodos();
+                        break;
+                        case 3:
                         break;
                     }
                 }
+                opcion3 = 0;
                 
             break;
+
             case 3: 
             break;
             }

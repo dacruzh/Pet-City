@@ -42,4 +42,16 @@ public class LinkedQueue<T> {
     public boolean empty(){
         return head == null;
     }
+
+    public void imprimirTodos(){
+        System.out.println("==================================================");
+        System.out.println("           MASCOTAS EN EL REFUGIO");
+        System.out.println("==================================================");
+        Node nod = head;
+        while((!this.empty()) && nod != null){
+            System.out.println(nod.getData().toString());
+            nod = nod.getNext();
+        }
+
+    }
 }

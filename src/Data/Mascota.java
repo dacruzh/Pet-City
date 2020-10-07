@@ -29,4 +29,9 @@ public class Mascota {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return this.nombre+"        "+this.edad+"       "+this.vacunas;
+    }
 }
