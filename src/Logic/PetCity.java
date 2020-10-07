@@ -6,6 +6,9 @@
 package Logic;
 import java.io.*;
 import java.util.Scanner;
+
+import Data.LinkedQueue;
+import Data.Mascota;
 import Interfaz.*;
 /**
  *
@@ -20,6 +23,7 @@ public class PetCity {
         int opcion1=0;
         int opcion2=0;
         int opcion3=0;
+        LinkedQueue<Mascota> mascotas=new LinkedQueue<Mascota>();
         while(opcion1 < 3){
          opcion1 = Menu.primerMenu();
 
@@ -43,12 +47,13 @@ public class PetCity {
             break;
 
             case 2:
-                while(opcion3 < 2){
+                while(opcion3 < 3){
                     opcion3 = Menu.tercerMenu();
                     switch(opcion3)
                     {   
                         case 1:
-                        System.out.println("Usted desea registrar una mascota");
+                            Mascota animal=Menu.regMascota();
+                            mascotas.enqueue(animal);
                         break;
                         case 2:
                         break;
