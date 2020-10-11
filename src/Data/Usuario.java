@@ -10,5 +10,16 @@ package Data;
  * @author ASUS PC
  */
 public class Usuario {
+    protected String nombre;
+    protected String apellido;
+    protected String contraseña;
+    protected int edad;
+    protected String genero;
     
+    public void modificar(){
+        //Por escribir
+    }
+    public void logIn(){
+        //Por escribir
+    }
 }
