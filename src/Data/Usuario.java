@@ -14,6 +14,7 @@ public class Usuario {
     protected String apellido;
     protected String contraseña;
     protected int edad;
+    protected int ID;
     protected String genero;
     
     public void modificar(){

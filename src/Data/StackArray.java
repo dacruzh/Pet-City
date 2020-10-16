@@ -9,7 +9,7 @@ package Data;
  *
  * @author ASUS PC
  */
-class StackArray<T>{
+public class StackArray<T>{
     private static final int N = 100;
     private int top;
     private T[] sArray;
@@ -44,11 +44,31 @@ class StackArray<T>{
             throw new RuntimeException("Stack is full");
         sArray[top] = item;
         top++;
+        System.out.println("Usted ha sido correctamente registrado");
     }
     
     public T peek(){
         if(isEmpty())
             return null;
         return sArray[top-1];
+    }
+    public int find(T c1){
+        int found = -1;
+        for (int x = 0; x<top; x++){
+            if (c1.equals(sArray[x])){
+                found = x;
+            }
+        }
+        return found;
+
+
+    }
+    public boolean eliminate(int posicion){
+        for(int i=posicion;i<top;i++){
+            sArray[i] = sArray[i+1];
+        }
+        top--;
+        sArray[top] = null;
+        return true;
     }
 }

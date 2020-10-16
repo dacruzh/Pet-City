@@ -24,11 +24,12 @@ public class Logica {
         boolean vacunas;
         if(a == 0) vacunas = false;
         else vacunas = true;
-        reader.close();
+        //reader.close();
         return new Mascota(i,nombre,vacunas);
         
     }
-    public Cliente registrarCliente(){
+    
+    public static Cliente registrarCliente(){
         Scanner lector = new Scanner(System.in);
         System.out.println("Ingrese su nombre");
         String nombreC = lector.next();
@@ -41,10 +42,15 @@ public class Logica {
             System.out.println("Ingrese su edad:");
             edadC = Menu.tryCatchMenu();
         }
+        int IDc = 0;
+        while(IDc== 0){
+            System.out.println("Ingrese su ID:");
+            IDc = Menu.tryCatchMenu();
+        }
         int y = 0;
         while(y == 0){
             System.out.println("Oprima 1 si es hombre, 2 si es mujer o 3 si no se identifica con ninguno de los anteriores.");
-            y = Menu. tryCatchMenu();
+            y = Menu. tryCatchMenu(3);
         }
         String generoC="";
         if (y == 1){
@@ -53,11 +59,14 @@ public class Logica {
             generoC = "Mujer";
         }if (y == 3){
             generoC = "Otro";
-        }else{
+        }/*else{
             System.out.println("/////Ingresó un número incorrecto/////");
-        }
-        lector.close();
-        return new Cliente(nombreC,apellidoC, contraseñaC, edadC, generoC);
+        }*/
+        //lector.close();
+        return new Cliente(nombreC,apellidoC, contraseñaC, edadC, IDc, generoC);
     }
-    
+    /*public static boolean eliminarCliente(int loquesea, StackArray<T> clientes){
+        boolean eliminado = false;
+        for(int i=array.length;i>loquesea;i--)
+    }*/
 }

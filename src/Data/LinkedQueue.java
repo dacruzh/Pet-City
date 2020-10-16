@@ -38,7 +38,14 @@ public class LinkedQueue<T> {
             return data;
         }
     }
-    
+    public T peek(){
+        if(head == null)
+            return null;
+        else{
+            T data = head.getData();
+            return data;
+        }
+    }
     public boolean empty(){
         return head == null;
     }
