@@ -63,12 +63,15 @@ public class Cliente extends Usuario{
     public boolean equals(Object obj) {
         //super.comparar();
         Cliente c1=(Cliente)obj;
-        System.out.println("Está siendo buscado en el sistema...");
-        System.out.println("Esto puede tardar un momento");
         if (c1.getID() == (this.getID())){
             return true;
         }
 		return false;   
+    }
+    
+    @Override
+    public String toString() {
+        return this.ID+"        "+this.nombre+"        "+this.apellido+"       "+this.edad+"       "+this.genero;
     }
     
 }

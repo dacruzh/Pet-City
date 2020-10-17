@@ -33,18 +33,25 @@ public class StackArray<T>{
     }
         
     public T pop(){
+        long t0 = System.currentTimeMillis();
         if(isEmpty())
             throw new RuntimeException("Stack is empty");
         top--;
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Tiempo de ejecución pop: " + exTime);
         return sArray[top];
     }
         
     public void push(T item){
+        //long t0 = System.currentTimeMillis();
         if (isFull())
             throw new RuntimeException("Stack is full");
         sArray[top] = item;
         top++;
-        System.out.println("Usted ha sido correctamente registrado");
+        //TODO quitar comentarios
+        //System.out.println("Usted ha sido correctamente registrado");
+        //long exTime = System.currentTimeMillis()-t0;
+        //System.out.println("Tiempo de ejecución push: " + exTime);
     }
     
     public T peek(){
@@ -53,22 +60,40 @@ public class StackArray<T>{
         return sArray[top-1];
     }
     public int find(T c1){
+        long t0 = System.currentTimeMillis();
         int found = -1;
         for (int x = 0; x<top; x++){
             if (c1.equals(sArray[x])){
                 found = x;
             }
         }
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Tiempo de ejecución find: " + exTime);
         return found;
 
 
     }
     public boolean eliminate(int posicion){
-        for(int i=posicion;i<top;i++){
+        long t0 = System.currentTimeMillis();
+        for(int i=posicion;i<top-1;i++){
             sArray[i] = sArray[i+1];
         }
         top--;
         sArray[top] = null;
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Tiempo de ejecución eliminate: " + exTime);
         return true;
+    }
+    
+        public void imprimirTodos(){
+        long t0 = System.currentTimeMillis();
+        System.out.println("==================================================");
+        System.out.println("           USUARIOS DEL REFUGIO");
+        System.out.println("==================================================");
+        for (int i = 0; i<top; i++){
+            System.out.println(sArray[i].toString());
+        }
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Tiempo de ejecución imprimirTodos: " + exTime);
     }
 }

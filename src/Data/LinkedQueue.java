@@ -18,6 +18,7 @@ public class LinkedQueue<T> {
     }
     
     public void enqueue(T data){
+        //long t0 = System.currentTimeMillis();
         Node newp = new Node(data);
         if(head==null){
             head = newp;
@@ -27,17 +28,25 @@ public class LinkedQueue<T> {
             tail.setNext(newp);
             tail = newp;
         }
+        //long exTime = System.currentTimeMillis()-t0;
+        //System.out.println("Tiempo de ejecución enqueue: " + exTime);
     }
     
     public T dequeue(){
-        if(head == null)
+        long t0 = System.currentTimeMillis();
+        if(head == null){
+            long exTime = System.currentTimeMillis()-t0;
+            System.out.println("Tiempo de ejecución dequeue: " + exTime);
             return null;
-        else{
+        }else{
             T data = head.getData();
             head = head.getNext();
+            long exTime = System.currentTimeMillis()-t0;
+            System.out.println("Tiempo de ejecución dequeue: " + exTime);
             return data;
         }
     }
+    
     public T peek(){
         if(head == null)
             return null;
@@ -51,6 +60,7 @@ public class LinkedQueue<T> {
     }
 
     public void imprimirTodos(){
+        long t0 = System.currentTimeMillis();
         System.out.println("==================================================");
         System.out.println("           MASCOTAS EN EL REFUGIO");
         System.out.println("==================================================");
@@ -59,6 +69,7 @@ public class LinkedQueue<T> {
             System.out.println(nod.getData().toString());
             nod = nod.getNext();
         }
-
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Tiempo de ejecución imprimirTodos: " + exTime);
     }
 }

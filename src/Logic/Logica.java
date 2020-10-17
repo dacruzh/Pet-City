@@ -5,8 +5,6 @@ import Interfaz.*;
 
 public class Logica {
     
-    
-    
     public static Mascota regMascota(){
         Scanner reader = new Scanner(System.in);
         System.out.println("Ingrese el nombre de la nueva mascota");
@@ -64,6 +62,30 @@ public class Logica {
         }*/
         //lector.close();
         return new Cliente(nombreC,apellidoC, contraseñaC, edadC, IDc, generoC);
+    }
+    
+    public static void fillPetLinkedQueue(LinkedQueue<Mascota> petQueue){
+         Mascota storni = new Mascota(1,"Storni",true);
+        petQueue.enqueue(storni);
+        Mascota prueba = new Mascota(0,"prueba",false);
+        long t0 = System.currentTimeMillis();
+        for (int i = 0; i<100000000; i++)
+            petQueue.enqueue(prueba);
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Llenar linkedQueue con 100000000 datos: " + exTime);
+       
+    }
+    
+    public static void fillClientStack(StackArray<Cliente> clientStack){
+        Cliente Gsus = new Cliente("Daniel", "elgsus", "prueba", 20, 2345, "Otro");
+        clientStack.push(Gsus);
+        Cliente prueba = new Cliente("John", "Doe", "0", 0, 1234, "Otro");
+        long t0 = System.currentTimeMillis();
+        for (int i = 0; i<100000000; i++)
+            clientStack.push(prueba);
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Llenar stackArray con 100000000 datos: " + exTime);
+      
     }
     /*public static boolean eliminarCliente(int loquesea, StackArray<T> clientes){
         boolean eliminado = false;
