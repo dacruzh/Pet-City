@@ -69,10 +69,10 @@ public class Logica {
         petQueue.enqueue(storni);
         Mascota prueba = new Mascota(0,"prueba",false);
         long t0 = System.currentTimeMillis();
-        for (int i = 0; i<100000000; i++)
+        for (int i = 0; i<100; i++)
             petQueue.enqueue(prueba);
         long exTime = System.currentTimeMillis()-t0;
-        System.out.println("Llenar linkedQueue con 100000000 datos: " + exTime);
+        System.out.println("Llenar linkedQueue con 100 datos: " + exTime);
        
     }
     
