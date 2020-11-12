@@ -27,8 +27,18 @@ public class Logica {
         
     }
     
-    public static Cliente registrarCliente(){
+    public static Cliente registrarCliente(PriorityQueueClass<Cliente> clientes){
         Scanner lector = new Scanner(System.in);
+        int IDc = 0;
+        while(IDc== 0){
+            System.out.println("Ingrese su ID:");
+            IDc = Menu.tryCatchMenu();
+            if(clientes.find(new Cliente (IDc))!=-1)
+            {
+                System.out.println("Alguien ya está registrado con ese ID");
+                IDc=0;
+            }
+        }
         System.out.println("Ingrese su nombre");
         String nombreC = lector.next();
         System.out.println("Ingrese su apellido");
@@ -40,11 +50,8 @@ public class Logica {
             System.out.println("Ingrese su edad:");
             edadC = Menu.tryCatchMenu();
         }
-        int IDc = 0;
-        while(IDc== 0){
-            System.out.println("Ingrese su ID:");
-            IDc = Menu.tryCatchMenu();
-        }
+        
+       
         int y = 0;
         while(y == 0){
             System.out.println("Oprima 1 si es hombre, 2 si es mujer o 3 si no se identifica con ninguno de los anteriores.");

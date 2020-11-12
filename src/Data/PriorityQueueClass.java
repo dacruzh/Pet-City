@@ -1,47 +1,65 @@
 package Data;
 
-public class PriorityQueueClass<T> {
+public class PriorityQueueClass<T extends Comparable<T>> {
     private T[] array;
     private int size;
 
-    public PriorityQueueClass(int n)
-    {   array = (T[])new Object[n];
+    public PriorityQueueClass(int n){   
+        array = (T[])new Comparable[n];
+      
         size=0;
     }
-    public void insertItem(T x)
-    {array[size]=x;
+    public void insertItem(T x){
+        array[size]=x;
         moveUp();
         size++;
     }
-    private void moveUp()
-    {
+    private void moveUp(){
         int child=size;
         int parent=(child-1)/2;
         T temp=array[child];
-        while(child>0&& temp.equals(array[parent])){
+        while(child>0&& temp.compareTo(array[parent])>0){
                 array[child]=array[parent];
                 child=parent;
                 parent=(child-1)/2;
         } 
         array[child]=temp;
     }
-    public T removeMax()
-    {T max=array[0];
+    public T removeMin(){
+        T  min=array[0];
         array[0]=array[--size];
-        moveDown();
-        return max;
+        moveDown(0);
+        return min;   
+     }
+    public T remove(int i)
+    {   if(array[i]!=null){
+        T salida=array[i];
+        array[i]=array[--size];
+        moveDown(i);
+        return salida;
     }
-    private void moveDown() {
+    else
+    {
+        return null;
+    }
+    }
+    public T peek()
+    {
+        return array[0];
+    }
+
+    private void moveDown(int i ){
+        
         boolean flag = false;
         T highest= null;
-        int parent = 0;
+        int parent = i;
         int child = 2*parent+1;
         T temp = array[parent];
         while(child < size && !flag) {
             highest = array[child];
-            if(child+1 < size && array[child].equals(array[child]))
+            if(child+1 < size && array[child+1].compareTo(array[child])<0)
                 highest = array[++child];
-            if(highest.equals(temp)) {
+            if(highest.compareTo(temp)<0) {
                 array[parent] = highest;
                 parent = child;
             }
@@ -51,6 +69,24 @@ public class PriorityQueueClass<T> {
         }
         array[parent] = temp;
     }
+    
+    public int find(T buscar)
+    {  int encontrado =-1; 
+         for (int i =0;i<size;i++)
+        {if(array[i]!=null&&array[i].compareTo(buscar)==0)
+            {
+                encontrado =i;
+            }
+        }
+        return encontrado;
+    }
+
+    public void imprimirTodos(){
+        for (int i = 0; i<size; i++){
+            System.out.println(array[i].toString());
+        }
+    }
+
         
 
 }

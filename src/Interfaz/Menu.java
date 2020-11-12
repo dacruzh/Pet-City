@@ -99,7 +99,7 @@ public class Menu {
             System.out.println("           Bienvenido de nuevo");
             System.out.println("=======================================\nIngrese una de las siguientes opciones:");
             System.out.println("1. Quiero adoptar una mascota");
-            System.out.println("2. Quiero irme de aquí (No aguanto ni un segundo más)");          
+            System.out.println("2. Eliminar mi regsitro en el programa");          
             System.out.println("3. Regresar al menú anterior");
             num = tryCatchMenu(3);
         }

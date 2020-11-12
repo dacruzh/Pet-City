@@ -1,17 +1,22 @@
 package Data;
 
-public class Mascota {
+public class Mascota implements Comparable<Mascota>{
     private int edad;
     private String nombre;
     private boolean vacunas;
     private int llegada; 
     private static int n=0; 
 
-    public Mascota(int edad, String nombre, boolean vacunas ){
+    public Mascota(int edad, String nombre, boolean vacunas ) {
         this.edad=edad;
         this.nombre=nombre;
         this.vacunas=vacunas;
-        this.llegada=n+1;
+        this.llegada=++n;
+        
+    }
+    public Mascota(int llegada)
+    {
+        this.llegada=llegada;
     }
     public int getEdad() {
         return edad;
@@ -47,5 +52,21 @@ public class Mascota {
             return true;
         }
 		return false;  
+    }
+
+    @Override
+    public int compareTo(Mascota o) {
+      
+      
+        if(this.llegada==o.getLlegada())
+        {
+            return-1;
+        }
+            else{ 
+                if(this.llegada>o.getLlegada())
+                    { return 1;}
+                else return 0;
+        }
+       
     }
 }

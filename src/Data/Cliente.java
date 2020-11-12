@@ -9,7 +9,7 @@ package Data;
  *
  * @author ASUS PC
  */
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Comparable<Cliente>{
     public Cliente(String nombre, String apellido, String contraseña, int edad, int ID, String genero){
         this.edad=edad;
         this.nombre=nombre;
@@ -73,5 +73,21 @@ public class Cliente extends Usuario{
     public String toString() {
         return this.ID+"        "+this.nombre+"        "+this.apellido+"       "+this.edad+"       "+this.genero;
     }
-    
+    @Override
+    public int compareTo(Cliente o) {
+       
+       
+        if(this.ID<o.getID()) {
+            return-1;
+        }
+            else{ 
+                if(this.ID>o.getID()){ 
+                        return 1;
+                    }
+                else return 0;
+        }
+       
+    }
+
+ 
 }
