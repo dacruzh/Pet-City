@@ -18,7 +18,7 @@ public class PriorityQueueClass<T extends Comparable<T>> {
         int child=size;
         int parent=(child-1)/2;
         T temp=array[child];
-        while(child>0&& temp.compareTo(array[parent])>0){
+        while(child>0&& temp.compareTo(array[parent])<0){
                 array[child]=array[parent];
                 child=parent;
                 parent=(child-1)/2;
@@ -26,7 +26,7 @@ public class PriorityQueueClass<T extends Comparable<T>> {
         array[child]=temp;
     }
     public T removeMin(){
-        T  min=array[0];
+        T min=array[0];
         array[0]=array[--size];
         moveDown(0);
         return min;   
@@ -55,11 +55,11 @@ public class PriorityQueueClass<T extends Comparable<T>> {
         int parent = i;
         int child = 2*parent+1;
         T temp = array[parent];
-        while(child < size && !flag) {
+        while(child < size && !flag){
             highest = array[child];
             if(child+1 < size && array[child+1].compareTo(array[child])<0)
                 highest = array[++child];
-            if(highest.compareTo(temp)<0) {
+            if(highest.compareTo(temp)<0){
                 array[parent] = highest;
                 parent = child;
             }
@@ -82,8 +82,11 @@ public class PriorityQueueClass<T extends Comparable<T>> {
     }
 
     public void imprimirTodos(){
-        for (int i = 0; i<size; i++){
-            System.out.println(array[i].toString());
+     
+        while(size!=0)
+        {
+            System.out.println(this.removeMin());
+           
         }
     }
 

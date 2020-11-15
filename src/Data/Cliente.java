@@ -10,11 +10,10 @@ package Data;
  * @author ASUS PC
  */
 public class Cliente extends Usuario implements Comparable<Cliente>{
-    public Cliente(String nombre, String apellido, String contraseña, int edad, int ID, String genero){
+    public Cliente(String nombre, String apellido, int edad, int ID, String genero){
         this.edad=edad;
         this.nombre=nombre;
         this.apellido=apellido;
-        this.contraseña=contraseña;
         this.genero=genero;
         this.ID=ID;
     }
@@ -35,9 +34,6 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
     public String getApellido() {
         return apellido;
     }
-    public String getContraseña() {
-        return contraseña;
-    }
     public String getGenero() {
         return genero;
     }
@@ -52,9 +48,6 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
     }
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
     }
     public void setGenero(String genero) {
         this.genero = genero;

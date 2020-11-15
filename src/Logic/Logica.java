@@ -68,28 +68,43 @@ public class Logica {
             System.out.println("/////Ingresó un número incorrecto/////");
         }*/
         //lector.close();
-        return new Cliente(nombreC,apellidoC, contraseñaC, edadC, IDc, generoC);
+        return new Cliente(nombreC,apellidoC, edadC, IDc, generoC);
     }
     
-    public static void fillPetLinkedQueue(LinkedQueue<Mascota> petQueue){
+    public static void fillListPets(PriorityQueueClass<Mascota> petQueue){
          Mascota storni = new Mascota(1,"Storni",true);
-        petQueue.enqueue(storni);
-        Mascota prueba = new Mascota(0,"prueba",false);
+        petQueue.insertItem(storni);
+        int n=0;
+        boolean vacunas=false;
+        
         long t0 = System.currentTimeMillis();
-        for (int i = 0; i<100; i++)
-            petQueue.enqueue(prueba);
+        for (int i = 0; i<10000; i++){
+            Mascota prueba = new Mascota(n,"prueba",vacunas);
+            petQueue.insertItem(prueba);
+            n=(n+1)%20;
+            if(n%2==0)
+                vacunas=false;
+            else
+                vacunas=true;
+        }
         long exTime = System.currentTimeMillis()-t0;
         System.out.println("Llenar linkedQueue con 100 datos: " + exTime);
        
     }
     
-    public static void fillClientStack(StackArray<Cliente> clientStack){
-        Cliente Gsus = new Cliente("Daniel", "elgsus", "prueba", 20, 2345, "Otro");
-        clientStack.push(Gsus);
-        Cliente prueba = new Cliente("John", "Doe", "0", 0, 1234, "Otro");
+    public static void fillListClientes(PriorityQueueClass<Cliente> clientes){
+        Cliente Gsus = new Cliente("Daniel", "elgsus", 20, 234500, "Otro");
+        clientes.insertItem(Gsus);
+        int id=0;
+        int n=15;
         long t0 = System.currentTimeMillis();
-        for (int i = 0; i<100000000; i++)
-            clientStack.push(prueba);
+        for (int i = 0; i<10000; i++){
+            clientes.insertItem( new Cliente("John", "Doe", n, id, "Otro"));
+        id++;
+        n=(n+1)%80;
+        if(n<=15)
+            n=16;
+        }
         long exTime = System.currentTimeMillis()-t0;
         System.out.println("Llenar stackArray con 100000000 datos: " + exTime);
       
