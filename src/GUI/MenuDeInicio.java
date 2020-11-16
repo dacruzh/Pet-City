@@ -14,6 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -21,8 +22,8 @@ import javax.swing.JTextField;
  * @author ASUS PC
  */
 public class MenuDeInicio extends javax.swing.JFrame {
-    PriorityQueueClass<Cliente> clientes = new PriorityQueueClass<Cliente>(100000);
-    PriorityQueueClass<Mascota> mascotas = new PriorityQueueClass<Mascota>(100000);
+    PriorityQueueClass<Cliente> clientes = new PriorityQueueClass<Cliente>(10002);
+    PriorityQueueClass<Mascota> mascotas = new PriorityQueueClass<Mascota>(10002);
     /**
      * Creates new form MenuDeInicio
      */
@@ -37,6 +38,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jPanel8.setVisible(false);
         jPanel13.setVisible(false);
         jPanel11.setVisible(false);
+        jPanel9.setVisible(false);
         buttonGroup1.add(Hombre);
         buttonGroup1.add(Mujer);
         buttonGroup1.add(Otro);
@@ -113,13 +115,14 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton9 = new javax.swing.JToggleButton();
         jPanel8 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         eliminarCliente = new javax.swing.JTextField();
         jToggleButton11 = new javax.swing.JToggleButton();
+        jPanel9 = new javax.swing.JPanel();
+        inputIDmascota = new javax.swing.JTextField();
+        jToggleButton16 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textoID = new javax.swing.JTextField();
@@ -377,44 +380,25 @@ public class MenuDeInicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Info un chingo arriba");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jLabel11.setText("Info un chingo abajo");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11))
-                .addContainerGap(263, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addContainerGap())
-        );
-
-        jScrollPane1.setViewportView(jPanel9);
+            },
+            new String [] {
+                "", "Nombre", "Edad", "Vacunas"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         eliminarCliente.setForeground(new java.awt.Color(153, 153, 153));
@@ -471,6 +455,60 @@ public class MenuDeInicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        inputIDmascota.setForeground(new java.awt.Color(153, 153, 153));
+        inputIDmascota.setText("Ingrese el ID de la mascota");
+        inputIDmascota.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputIDmascotaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputIDmascotaFocusLost(evt);
+            }
+        });
+        inputIDmascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputIDmascotaActionPerformed(evt);
+            }
+        });
+        inputIDmascota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputIDmascotaKeyTyped(evt);
+            }
+        });
+
+        jToggleButton16.setBackground(new java.awt.Color(88, 46, 116));
+        jToggleButton16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jToggleButton16.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleButton16.setText("Aceptar");
+        jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton16ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inputIDmascota, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(inputIDmascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton16)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -481,10 +519,12 @@ public class MenuDeInicio extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(164, 164, 164)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -495,18 +535,21 @@ public class MenuDeInicio extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                        .addGap(42, 42, 42)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89))))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -745,7 +788,6 @@ public class MenuDeInicio extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
@@ -953,6 +995,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
+    
     private void idRegisterLabelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idRegisterLabelKeyTyped
         sDigits(idRegisterLabel);
     }//GEN-LAST:event_idRegisterLabelKeyTyped
@@ -975,6 +1018,23 @@ public class MenuDeInicio extends javax.swing.JFrame {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         jPanel8.setVisible(true);
+        jPanel9.setVisible(true);
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        model.setRowCount(mascotas.size-1);
+        Mascota [] temp=new Mascota[mascotas.size];
+        for(int i=0;i<temp.length-1;i++)
+            temp[i]=mascotas.removeMin();
+        for(int i=0;i<temp.length-1;i++)
+        {
+            
+            jTable1.setValueAt(temp[i].getLlegada(), i, 0);
+            jTable1.setValueAt(temp[i].getNombre(), i, 1);
+            jTable1.setValueAt(temp[i].getEdad(), i, 2);
+            jTable1.setValueAt(temp[i].getVacunas(), i, 3);
+        }
+        for(int i=0;i<temp.length-1;i++)
+            mascotas.insertItem(temp[i]);
+        
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
@@ -1011,12 +1071,14 @@ public class MenuDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarClienteActionPerformed
 
     private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
-       
+long t0 = System.currentTimeMillis();        
        int idEnt=-1;
        int id = Integer.parseInt(eliminarCliente.getText());
        idEnt=clientes.find(new Cliente(id));
          if(idEnt!=-1){
             clientes.remove(idEnt);
+            long exTime = System.currentTimeMillis()-t0; //Comando al final del método
+            System.out.println("eliminar un dato en  10000 datos: " + exTime);
             JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
             jPanel6.setVisible(false);
             jPanel2.setVisible(true);
@@ -1107,6 +1169,44 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jPanel2.setVisible(false);
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
+    private void inputIDmascotaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputIDmascotaFocusGained
+        if(inputIDmascota.getText().equals("Ingrese el ID de la mascota")){
+            inputIDmascota.setText("");
+            inputIDmascota.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_inputIDmascotaFocusGained
+
+    private void inputIDmascotaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputIDmascotaFocusLost
+        if(inputIDmascota.getText().equals("")){
+            inputIDmascota.setText("Ingrese el ID de la mascota");
+            inputIDmascota.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_inputIDmascotaFocusLost
+
+    private void inputIDmascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIDmascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputIDmascotaActionPerformed
+
+    private void inputIDmascotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIDmascotaKeyTyped
+        sDigits(inputIDmascota);
+    }//GEN-LAST:event_inputIDmascotaKeyTyped
+
+    private void jToggleButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton16ActionPerformed
+            long t0 = System.currentTimeMillis(); 
+        int id=Integer.parseInt(inputIDmascota.getText());
+            int num=mascotas.find(new Mascota(id));
+            if(num==-1)
+                JOptionPane.showMessageDialog(null, "No se econtró las mascota"+id);
+            else
+            {
+                Mascota temp=mascotas.remove(num);
+                long exTime = System.currentTimeMillis()-t0; //Comando al final del método
+                System.out.println("eliminar una mascota en 10000 datos: " + exTime);
+                JOptionPane.showMessageDialog(null, "Se ha adoptado correctamente a la mascota: "+temp.getNombre());
+            }
+                
+    }//GEN-LAST:event_jToggleButton16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1149,17 +1249,16 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField eliminarCliente;
     private javax.swing.JTextField idRegisterLabel;
+    private javax.swing.JTextField inputIDmascota;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1174,7 +1273,8 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
     private javax.swing.JToggleButton jToggleButton11;
@@ -1182,6 +1282,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton13;
     private javax.swing.JToggleButton jToggleButton14;
     private javax.swing.JToggleButton jToggleButton15;
+    private javax.swing.JToggleButton jToggleButton16;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;

@@ -58,7 +58,7 @@ public class Mascota implements Comparable<Mascota>{
     public int compareTo(Mascota o) {
       
       
-        if(this.llegada==o.getLlegada())
+        if(this.llegada<o.getLlegada())
         {
             return-1;
         }

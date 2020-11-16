@@ -21,6 +21,10 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
         
         this.ID=ID;
     }
+
+    public Cliente(String nombreC, String apellidoC, String contraseñaC, int edadC, int IDc, String generoC) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public int getEdad() {
         return edad;
     }

@@ -2,7 +2,7 @@ package Data;
 
 public class PriorityQueueClass<T extends Comparable<T>> {
     private T[] array;
-    private int size;
+    public int size;
 
     public PriorityQueueClass(int n){   
         array = (T[])new Comparable[n];
@@ -76,18 +76,30 @@ public class PriorityQueueClass<T extends Comparable<T>> {
         {if(array[i]!=null&&array[i].compareTo(buscar)==0)
             {
                 encontrado =i;
+                break;
             }
         }
         return encontrado;
     }
 
     public void imprimirTodos(){
-     
+    long t0 = System.currentTimeMillis();
+        T[] arrayCopy = (T[])new Comparable[array.length];
+        for(int i=0; i<size;i++)
+            arrayCopy[i]=array[i];
+    int sizec=size;
         while(size!=0)
         {
             System.out.println(this.removeMin());
            
         }
+        size=sizec;
+        for(int i=0; i<size;i++)
+           array[i]=arrayCopy[i];
+        
+        long exTime = System.currentTimeMillis()-t0; //Comando al final del método
+        System.out.println("Imprimir 10000 datos: " + exTime);
+        
     }
 
         

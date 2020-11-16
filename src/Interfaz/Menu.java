@@ -18,13 +18,13 @@ public class Menu {
                 return n;
             }
             else{
-                System.out.println("/////Ingreso una opcion inexistente/////");
+                System.out.println("/////Ingresó una opción inexistente/////");
                 return 0;
             }
         }
         catch(Exception e)
         {
-            System.out.println("/////Ingreso un tipo de dato incorrecto/////");
+            System.out.println("/////Ingresó un tipo de dato incorrecto/////");
             return 0;
         }
         
@@ -38,7 +38,7 @@ public class Menu {
             return n;
         }
         catch(Exception e){
-            System.out.println("/////Ingreso un tipo de dato incorrecto/////");
+            System.out.println("/////Ingresó un tipo de dato incorrecto/////");
             return 0;
         } 
     }
@@ -99,7 +99,7 @@ public class Menu {
             System.out.println("           Bienvenido de nuevo");
             System.out.println("=======================================\nIngrese una de las siguientes opciones:");
             System.out.println("1. Quiero adoptar una mascota");
-            System.out.println("2. Eliminar mi regsitro en el programa");          
+            System.out.println("2. Quiero eliminar mis datos del sistema");          
             System.out.println("3. Regresar al menú anterior");
             num = tryCatchMenu(3);
         }

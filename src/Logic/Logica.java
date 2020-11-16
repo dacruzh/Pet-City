@@ -27,18 +27,8 @@ public class Logica {
         
     }
     
-    public static Cliente registrarCliente(PriorityQueueClass<Cliente> clientes){
+    public static Cliente registrarCliente(){
         Scanner lector = new Scanner(System.in);
-        int IDc = 0;
-        while(IDc== 0){
-            System.out.println("Ingrese su ID:");
-            IDc = Menu.tryCatchMenu();
-            if(clientes.find(new Cliente (IDc))!=-1)
-            {
-                System.out.println("Alguien ya está registrado con ese ID");
-                IDc=0;
-            }
-        }
         System.out.println("Ingrese su nombre");
         String nombreC = lector.next();
         System.out.println("Ingrese su apellido");
@@ -50,8 +40,11 @@ public class Logica {
             System.out.println("Ingrese su edad:");
             edadC = Menu.tryCatchMenu();
         }
-        
-       
+        int IDc = 0;
+        while(IDc== 0){
+            System.out.println("Ingrese su ID:");
+            IDc = Menu.tryCatchMenu();
+        }
         int y = 0;
         while(y == 0){
             System.out.println("Oprima 1 si es hombre, 2 si es mujer o 3 si no se identifica con ninguno de los anteriores.");
@@ -68,16 +61,16 @@ public class Logica {
             System.out.println("/////Ingresó un número incorrecto/////");
         }*/
         //lector.close();
-        return new Cliente(nombreC,apellidoC, edadC, IDc, generoC);
+        return new Cliente(nombreC,apellidoC, contraseñaC, edadC, IDc, generoC);
     }
     
-    public static void fillListPets(PriorityQueueClass<Mascota> petQueue){
+     public static void fillListPets(PriorityQueueClass<Mascota> petQueue){
          Mascota storni = new Mascota(1,"Storni",true);
         petQueue.insertItem(storni);
         int n=0;
         boolean vacunas=false;
         
-        long t0 = System.currentTimeMillis();
+        long t0 = System.currentTimeMillis(); //Comando antes del método
         for (int i = 0; i<10000; i++){
             Mascota prueba = new Mascota(n,"prueba",vacunas);
             petQueue.insertItem(prueba);
@@ -87,8 +80,8 @@ public class Logica {
             else
                 vacunas=true;
         }
-        long exTime = System.currentTimeMillis()-t0;
-        System.out.println("Llenar linkedQueue con 100 datos: " + exTime);
+        long exTime = System.currentTimeMillis()-t0; //Comando al final del método
+        System.out.println("Llenar linkedQueue con 10000 datos: " + exTime); //System.out.pintln() del tiempo de ejecución de ese visaje sabroso
        
     }
     
@@ -106,11 +99,8 @@ public class Logica {
             n=16;
         }
         long exTime = System.currentTimeMillis()-t0;
-        System.out.println("Llenar stackArray con 100000000 datos: " + exTime);
+        System.out.println("Llenar stackArray con 10000 datos: " + exTime);
       
     }
-    /*public static boolean eliminarCliente(int loquesea, StackArray<T> clientes){
-        boolean eliminado = false;
-        for(int i=array.length;i>loquesea;i--)
-    }*/
+    
 }
