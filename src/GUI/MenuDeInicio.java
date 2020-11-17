@@ -29,6 +29,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
      */
     public MenuDeInicio() {
         initComponents();
+        this.setTitle("Pet City");
         Logica.fillListClientes(clientes);
         Logica.fillListPets(mascotas);
         scaleImage();
@@ -42,16 +43,17 @@ public class MenuDeInicio extends javax.swing.JFrame {
         buttonGroup1.add(Hombre);
         buttonGroup1.add(Mujer);
         buttonGroup1.add(Otro);
+        setIconImage(new ImageIcon(getClass().getResource("/GUI/Paw.png")).getImage());
     }
     
     public void scaleImage(){
-        ImageIcon icon1 = new ImageIcon("src/GUI/Logo.JPG");
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/GUI/Logo.JPG"));
         Image img1 = icon1.getImage();
         Image imgScale1 = img1.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon1 = new ImageIcon(imgScale1);
         jLabel1.setIcon(scaledIcon1);
         
-        ImageIcon icon2 = new ImageIcon("src/GUI/Paw.png");
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/GUI/Paw.png"));
         Image img2 = icon2.getImage();
         Image imgScale2 = img2.getScaledInstance(jLabel7.getWidth(), jLabel7.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon2 = new ImageIcon(imgScale2);
@@ -1020,11 +1022,11 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jPanel8.setVisible(true);
         jPanel9.setVisible(true);
         DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
-        model.setRowCount(mascotas.size-1);
+        model.setRowCount(mascotas.size);
         Mascota [] temp=new Mascota[mascotas.size];
-        for(int i=0;i<temp.length-1;i++)
+        for(int i=0;i<temp.length;i++)
             temp[i]=mascotas.removeMin();
-        for(int i=0;i<temp.length-1;i++)
+        for(int i=0;i<temp.length;i++)
         {
             
             jTable1.setValueAt(temp[i].getLlegada(), i, 0);
@@ -1032,7 +1034,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
             jTable1.setValueAt(temp[i].getEdad(), i, 2);
             jTable1.setValueAt(temp[i].getVacunas(), i, 3);
         }
-        for(int i=0;i<temp.length-1;i++)
+        for(int i=0;i<temp.length;i++)
             mascotas.insertItem(temp[i]);
         
     }//GEN-LAST:event_jToggleButton3ActionPerformed
