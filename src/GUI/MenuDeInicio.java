@@ -12,6 +12,7 @@ import Logic.Logica;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -24,9 +25,8 @@ import javax.swing.table.DefaultTableModel;
 public class MenuDeInicio extends javax.swing.JFrame {
     PriorityQueueClass<Cliente> clientes = new PriorityQueueClass<Cliente>(10002);
     PriorityQueueClass<Mascota> mascotas = new PriorityQueueClass<Mascota>(10002);
-    /**
-     * Creates new form MenuDeInicio
-     */
+    int IDactual = -1;
+    
     public MenuDeInicio() {
         initComponents();
         this.setTitle("Pet City");
@@ -35,11 +35,11 @@ public class MenuDeInicio extends javax.swing.JFrame {
         scaleImage();
         jPanel4.setVisible(false);
         jPanel6.setVisible(false);
-        jPanel10.setVisible(false);
         jPanel8.setVisible(false);
         jPanel13.setVisible(false);
         jPanel11.setVisible(false);
         jPanel9.setVisible(false);
+        jPanel14.setVisible(false);
         buttonGroup1.add(Hombre);
         buttonGroup1.add(Mujer);
         buttonGroup1.add(Otro);
@@ -111,6 +111,9 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jToggleButton15 = new javax.swing.JToggleButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jToggleButton14 = new javax.swing.JToggleButton();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jToggleButton3 = new javax.swing.JToggleButton();
@@ -119,9 +122,6 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel10 = new javax.swing.JPanel();
-        eliminarCliente = new javax.swing.JTextField();
-        jToggleButton11 = new javax.swing.JToggleButton();
         jPanel9 = new javax.swing.JPanel();
         inputIDmascota = new javax.swing.JTextField();
         jToggleButton16 = new javax.swing.JToggleButton();
@@ -293,40 +293,72 @@ public class MenuDeInicio extends javax.swing.JFrame {
             }
         });
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "", "Nombre", "Edad", "Vacunas"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jToggleButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                            .addComponent(jToggleButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(394, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jToggleButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jToggleButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                    .addComponent(jToggleButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jToggleButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jToggleButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128)
-                .addComponent(jToggleButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jToggleButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jToggleButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jToggleButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -403,60 +435,6 @@ public class MenuDeInicio extends javax.swing.JFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
-        eliminarCliente.setForeground(new java.awt.Color(153, 153, 153));
-        eliminarCliente.setText("Ingrese su identificación");
-        eliminarCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                eliminarClienteFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                eliminarClienteFocusLost(evt);
-            }
-        });
-        eliminarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarClienteActionPerformed(evt);
-            }
-        });
-        eliminarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                eliminarClienteKeyTyped(evt);
-            }
-        });
-
-        jToggleButton11.setBackground(new java.awt.Color(88, 46, 116));
-        jToggleButton11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jToggleButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton11.setText("Aceptar");
-        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton11ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(eliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(eliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton11)
-                .addContainerGap())
-        );
-
         inputIDmascota.setForeground(new java.awt.Color(153, 153, 153));
         inputIDmascota.setText("Ingrese el ID de la mascota");
         inputIDmascota.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -524,12 +502,11 @@ public class MenuDeInicio extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(164, 164, 164)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,12 +526,11 @@ public class MenuDeInicio extends javax.swing.JFrame {
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))))
+                        .addGap(214, 214, 214))))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(875, 677));
 
         textoID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textoID.setText("Ingrese su identificación");
@@ -641,7 +617,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
+                .addContainerGap(319, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -654,7 +630,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jToggleButton7)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 598, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 623, Short.MAX_VALUE)
                     .addComponent(jToggleButton8)
                     .addContainerGap()))
         );
@@ -701,7 +677,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 875, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,8 +910,16 @@ public class MenuDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-         jPanel2.setVisible(true);
-        jPanel4.setVisible(false);// TODO add your handling code here:
+        jPanel2.setVisible(true);
+        jPanel4.setVisible(false);
+        registerNameLabel.setText("");
+        registerLastnameLabel.setText("");
+        idRegisterLabel.setText("");
+        registerAgeLabel.setText("");
+        buttonGroup1.clearSelection();
+        textoID.setText("");
+        textoID.setText("Ingrese su identificación");
+        textoID.setForeground(new Color(153,153,153));
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void registerNameLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerNameLabelActionPerformed
@@ -949,16 +933,19 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
 
         int idEnt=-1;
+        if(idRegisterLabel.getText().equals(""))
+            JOptionPane.showMessageDialog(null, "No escribió ninguna identificación.");
+        else{
         int id = Integer.parseInt(idRegisterLabel.getText());
         idEnt=clientes.find(new Cliente(id));
          if(idEnt==-1){
             String nombre = registerNameLabel.getText();
-            if(nombre=="")
+            if(nombre.equals(""))
                 JOptionPane.showMessageDialog(null, "No escribió ningun nombre.");
             else{
                 
                 String apellido = registerLastnameLabel.getText();
-                  if(apellido=="")
+                  if(apellido.equals(""))
                 JOptionPane.showMessageDialog(null, "No escribió ningun apellido.");
                   else
                   {
@@ -994,6 +981,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
          {
            JOptionPane.showMessageDialog(null, "Ya está registrado alguien con ese Id");
          }
+        }
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
@@ -1041,18 +1029,20 @@ public class MenuDeInicio extends javax.swing.JFrame {
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
     int idEnt=-1;
-    int num= Integer.parseInt(textoID.getText());
-    idEnt=clientes.find(new Cliente(num));
-         if(idEnt!=-1){
-            jPanel2.setVisible(false);
-            jPanel6.setVisible(true);
-         }
-         else
-         {
-           JOptionPane.showMessageDialog(null, "Usted no está registrado");
-         }        
-        
-        
+    String id = textoID.getText();
+    if(id.equals("") || id.equals("Ingrese su identificación"))
+        JOptionPane.showMessageDialog(null,"No ingreso ninguna identificación");
+    else{
+        int num = Integer.parseInt(textoID.getText());
+        idEnt=clientes.find(new Cliente(num));
+            if(idEnt!=-1){
+                IDactual = num;
+                jPanel2.setVisible(false);
+                jPanel6.setVisible(true);
+            }
+            else
+            JOptionPane.showMessageDialog(null, "Usted no está registrado");      
+    }    
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton3MouseClicked
@@ -1062,52 +1052,31 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
         jPanel6.setVisible(false);
         jPanel2.setVisible(true);
+        jPanel8.setVisible(false);
+        jPanel9.setVisible(false);
+        inputIDmascota.setText("");
+        inputIDmascota.setText("Ingrese el ID de la mascota");
+        inputIDmascota.setForeground(new Color(153,153,153));
+        textoID.setText("");
+        textoID.setText("Ingrese su identificación");
+        textoID.setForeground(new Color(153,153,153));
+                
     }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        jPanel10.setVisible(true);
+        int num = clientes.find(new Cliente(IDactual));
+        Cliente temp = clientes.remove(num);
+        JOptionPane.showMessageDialog(null, "Se ha eliminado su cuenta: "+temp.getNombre()+ " "+temp.getID());
+        jPanel6.setVisible(false);
+        jPanel2.setVisible(true);
+        jPanel8.setVisible(false);
+        jPanel9.setVisible(false);
+        inputIDmascota.setText("");
+        inputIDmascota.setText("Ingrese el ID de la mascota");
+        inputIDmascota.setForeground(new Color(153,153,153));
+        textoID.setText("Ingrese su identificación");
+        textoID.setForeground(new Color(153,153,153));
     }//GEN-LAST:event_jToggleButton5ActionPerformed
-
-    private void eliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClienteActionPerformed
-        
-    }//GEN-LAST:event_eliminarClienteActionPerformed
-
-    private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
-long t0 = System.currentTimeMillis();        
-       int idEnt=-1;
-       int id = Integer.parseInt(eliminarCliente.getText());
-       idEnt=clientes.find(new Cliente(id));
-         if(idEnt!=-1){
-            clientes.remove(idEnt);
-            long exTime = System.currentTimeMillis()-t0; //Comando al final del método
-            System.out.println("eliminar un dato en  10000 datos: " + exTime);
-            JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
-            jPanel6.setVisible(false);
-            jPanel2.setVisible(true);
-         }
-         else
-         {
-           JOptionPane.showMessageDialog(null, "Número de identificación incorrecto");
-         }
-    }//GEN-LAST:event_jToggleButton11ActionPerformed
-
-    private void eliminarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eliminarClienteKeyTyped
-        sDigits(eliminarCliente);
-    }//GEN-LAST:event_eliminarClienteKeyTyped
-
-    private void eliminarClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_eliminarClienteFocusGained
-        if(eliminarCliente.getText().equals("Ingrese su identificación")){
-            eliminarCliente.setText("");
-            eliminarCliente.setForeground(new Color(0,0,0));
-        }
-    }//GEN-LAST:event_eliminarClienteFocusGained
-
-    private void eliminarClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_eliminarClienteFocusLost
-        if(eliminarCliente.getText().equals("")){
-            eliminarCliente.setText("Ingrese su identificación");
-            eliminarCliente.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_eliminarClienteFocusLost
 
     private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
         jPanel13.setVisible(true);
@@ -1115,11 +1084,47 @@ long t0 = System.currentTimeMillis();
     }//GEN-LAST:event_jToggleButton10ActionPerformed
 
     private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
-        mascotas.imprimirTodos();        // TODO add your handling code here:
+        jPanel14.setVisible(true);
+        DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
+        model.setRowCount(mascotas.size);
+        model.setColumnCount(4);
+        String [] n = new String[]{"", "Nombre","Edad", "Vacunas"};
+        model.setColumnIdentifiers(n);
+        Mascota [] temp=new Mascota[mascotas.size];
+        for(int i=0;i<temp.length;i++)
+            temp[i]=mascotas.removeMin();
+        for(int i=0;i<temp.length;i++)
+        {
+            
+            jTable2.setValueAt(temp[i].getLlegada(), i, 0);
+            jTable2.setValueAt(temp[i].getNombre(), i, 1);
+            jTable2.setValueAt(temp[i].getEdad(), i, 2);
+            jTable2.setValueAt(temp[i].getVacunas(), i, 3);
+        }
+        for(int i=0;i<temp.length;i++)
+            mascotas.insertItem(temp[i]);        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton12ActionPerformed
 
     private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
-        clientes.imprimirTodos();
+        jPanel14.setVisible(true);
+        DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
+        model.setRowCount(clientes.size);
+        model.setColumnCount(4);
+        String [] n = new String[]{"ID","Nombre","Edad","Genero"};
+        model.setColumnIdentifiers(n);
+        Cliente[] temp=new Cliente[clientes.size];
+        for(int i=0;i<temp.length;i++)
+            temp[i]=clientes.removeMin();
+        for(int i=0;i<temp.length;i++)
+        {
+            
+            jTable2.setValueAt(temp[i].getID(), i, 0);
+            jTable2.setValueAt(temp[i].getNombre(), i, 1);
+            jTable2.setValueAt(temp[i].getEdad(), i, 2);
+            jTable2.setValueAt(temp[i].getGenero(), i, 3);
+        }
+        for(int i=0;i<temp.length;i++)
+            clientes.insertItem(temp[i]);    
     }//GEN-LAST:event_jToggleButton13ActionPerformed
 
     private void registerPetAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPetAgeActionPerformed
@@ -1163,7 +1168,15 @@ long t0 = System.currentTimeMillis();
 
     private void jToggleButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton14ActionPerformed
             jPanel11.setVisible(false);
-            jPanel2.setVisible(true);// TODO add your handling code here:
+            jPanel2.setVisible(true);
+            jPanel14.setVisible(false);
+            jPanel13.setVisible(false);
+            registerPetName.setText("");
+            registerPetAge.setText("");
+            jCheckBox1.setSelected(false);
+            textoID.setText("");
+            textoID.setText("Ingrese su identificación");
+            textoID.setForeground(new Color(153,153,153));
     }//GEN-LAST:event_jToggleButton14ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
@@ -1194,18 +1207,27 @@ long t0 = System.currentTimeMillis();
     }//GEN-LAST:event_inputIDmascotaKeyTyped
 
     private void jToggleButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton16ActionPerformed
-            long t0 = System.currentTimeMillis(); 
+        long t0 = System.currentTimeMillis(); 
         int id=Integer.parseInt(inputIDmascota.getText());
-            int num=mascotas.find(new Mascota(id));
-            if(num==-1)
-                JOptionPane.showMessageDialog(null, "No se econtró las mascota"+id);
-            else
-            {
-                Mascota temp=mascotas.remove(num);
-                long exTime = System.currentTimeMillis()-t0; //Comando al final del método
-                System.out.println("eliminar una mascota en 10000 datos: " + exTime);
-                JOptionPane.showMessageDialog(null, "Se ha adoptado correctamente a la mascota: "+temp.getNombre());
-            }
+        int num=mascotas.find(new Mascota(id));
+        if(num==-1)
+            JOptionPane.showMessageDialog(null, "No se econtró las mascota"+id);
+        else{
+            Mascota temp=mascotas.remove(num);
+            long exTime = System.currentTimeMillis()-t0; //Comando al final del método
+            System.out.println("eliminar una mascota en 10000 datos: " + exTime);
+            JOptionPane.showMessageDialog(null, "Se ha adoptado correctamente a la mascota: "+temp.getNombre());
+        }
+        jPanel6.setVisible(false);
+        jPanel2.setVisible(true);
+        jPanel8.setVisible(false);
+        jPanel9.setVisible(false);
+
+        inputIDmascota.setText("");
+        inputIDmascota.setText("Ingrese el ID de la mascota");
+        inputIDmascota.setForeground(new Color(153,153,153));
+        textoID.setText("Ingrese su identificación");
+        textoID.setForeground(new Color(153,153,153));
                 
     }//GEN-LAST:event_jToggleButton16ActionPerformed
 
@@ -1249,7 +1271,6 @@ long t0 = System.currentTimeMillis();
     private javax.swing.JRadioButton Mujer;
     private javax.swing.JRadioButton Otro;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField eliminarCliente;
     private javax.swing.JTextField idRegisterLabel;
     private javax.swing.JTextField inputIDmascota;
     private javax.swing.JCheckBox jCheckBox1;
@@ -1263,10 +1284,10 @@ long t0 = System.currentTimeMillis();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1275,11 +1296,12 @@ long t0 = System.currentTimeMillis();
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
-    private javax.swing.JToggleButton jToggleButton11;
     private javax.swing.JToggleButton jToggleButton12;
     private javax.swing.JToggleButton jToggleButton13;
     private javax.swing.JToggleButton jToggleButton14;
