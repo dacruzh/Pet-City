@@ -23,8 +23,8 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS PC
  */
 public class MenuDeInicio extends javax.swing.JFrame {
-    HashMapPro clientes = new HashMapPro(10002);
-    PriorityQueueClass<Mascota> mascotas = new PriorityQueueClass<Mascota>(10002);
+    HashMapPro clientes = new HashMapPro(10000002);
+    PriorityQueueClass<Mascota> mascotas = new PriorityQueueClass<Mascota>(100000002);
     int IDactual = -1;
     
     public MenuDeInicio() {
@@ -1009,7 +1009,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         jPanel8.setVisible(true);
         jPanel9.setVisible(true);
-        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+       /* DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
         model.setRowCount(mascotas.size);
         Mascota [] temp=new Mascota[mascotas.size];
         for(int i=0;i<temp.length;i++)
@@ -1024,7 +1024,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
         }
         for(int i=0;i<temp.length;i++)
             mascotas.insertItem(temp[i]);
-        
+        */
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
@@ -1064,8 +1064,10 @@ public class MenuDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        
+        long t0 = System.currentTimeMillis();
         Cliente temp = clientes.remove( IDactual);
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Eliminar elemento Hash con 10000 datos: " + exTime);
         JOptionPane.showMessageDialog(null, "Se ha eliminado su cuenta: "+temp.getNombre()+ " "+temp.getID());
         jPanel6.setVisible(false);
         jPanel2.setVisible(true);
@@ -1084,6 +1086,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton10ActionPerformed
 
     private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
+        long t0 = System.currentTimeMillis();
         jPanel14.setVisible(true);
         DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
         model.setRowCount(mascotas.size);
@@ -1102,10 +1105,13 @@ public class MenuDeInicio extends javax.swing.JFrame {
             jTable2.setValueAt(temp[i].getVacunas(), i, 3);
         }
         for(int i=0;i<temp.length;i++)
-            mascotas.insertItem(temp[i]);        // TODO add your handling code here:
+            mascotas.insertItem(temp[i]);
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Imprimir Heap con 10000 datos: " + exTime);
     }//GEN-LAST:event_jToggleButton12ActionPerformed
 
     private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
+        long t0 = System.currentTimeMillis();
         jPanel14.setVisible(true);
         DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
         model.setRowCount((int)clientes.n);
@@ -1120,8 +1126,10 @@ public class MenuDeInicio extends javax.swing.JFrame {
             jTable2.setValueAt(temp[i].getNombre(), i, 1);
             jTable2.setValueAt(temp[i].getEdad(), i, 2);
             jTable2.setValueAt(temp[i].getGenero(), i, 3);
-        }
-        }}//GEN-LAST:event_jToggleButton13ActionPerformed
+        }}
+        long exTime = System.currentTimeMillis()-t0;
+        System.out.println("Imprimir Hash con 10000 datos: " + exTime);
+        }//GEN-LAST:event_jToggleButton13ActionPerformed
 
     private void registerPetAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPetAgeActionPerformed
         // TODO add your handling code here:
@@ -1224,7 +1232,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
         inputIDmascota.setForeground(new Color(153,153,153));
         textoID.setText("Ingrese su identificación");
         textoID.setForeground(new Color(153,153,153));
-                
+        
     }//GEN-LAST:event_jToggleButton16ActionPerformed
 
     /**

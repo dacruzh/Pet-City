@@ -71,7 +71,7 @@ public class Logica {
         boolean vacunas=false;
         
         long t0 = System.currentTimeMillis(); //Comando antes del método
-        for (int i = 0; i<10000; i++){
+        for (int i = 0; i<100000000; i++){
             Mascota prueba = new Mascota(n,"prueba",vacunas);
             petQueue.insertItem(prueba);
             n=(n+1)%20;
@@ -81,7 +81,7 @@ public class Logica {
                 vacunas=true;
         }
         long exTime = System.currentTimeMillis()-t0; //Comando al final del método
-        System.out.println("Llenar linkedQueue con 10000 datos: " + exTime); //System.out.pintln() del tiempo de ejecución de ese visaje sabroso
+        System.out.println("Llenar heap con 10000 datos: " + exTime); //System.out.pintln() del tiempo de ejecución de ese visaje sabroso
        
     }
     
@@ -91,7 +91,7 @@ public class Logica {
         int id=1;
         int n=15;
         long t0 = System.currentTimeMillis();
-        for (int i = 0; i<10000; i++){
+        for (int i = 0; i<10000000; i++){
             clientes.insert( new Cliente("John", "Doe", n, id, "Otro"));
         id++;
         n=(n+1)%80;
@@ -99,7 +99,7 @@ public class Logica {
             n=16;
         }
         long exTime = System.currentTimeMillis()-t0;
-        System.out.println("Llenar stackArray con 10000 datos: " + exTime);
+        System.out.println("Llenar Hash con 10000 datos: " + exTime);
       
     }
     
