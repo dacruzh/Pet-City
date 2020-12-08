@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS PC
  */
 public class MenuDeInicio extends javax.swing.JFrame {
-    PriorityQueueClass<Cliente> clientes = new PriorityQueueClass<Cliente>(10002);
+    HashMapPro clientes = new HashMapPro(10002);
     PriorityQueueClass<Mascota> mascotas = new PriorityQueueClass<Mascota>(10002);
     int IDactual = -1;
     
@@ -937,8 +937,8 @@ public class MenuDeInicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No escribió ninguna identificación.");
         else{
         int id = Integer.parseInt(idRegisterLabel.getText());
-        idEnt=clientes.find(new Cliente(id));
-         if(idEnt==-1){
+        
+         if(clientes.find(id)){
             String nombre = registerNameLabel.getText();
             if(nombre.equals(""))
                 JOptionPane.showMessageDialog(null, "No escribió ningun nombre.");
@@ -964,7 +964,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
                         if(genero==null)
                             JOptionPane.showMessageDialog(null, "No seleccionó un género");
                         else{   Cliente cliente=new Cliente(nombre,apellido,edad,id,genero);
-                                clientes.insertItem(cliente);
+                                clientes.insert(cliente);
                                 idRegisterLabel.setText("");
                                 registerNameLabel.setText("");
                                 registerLastnameLabel.setText("");
@@ -1028,14 +1028,14 @@ public class MenuDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-    int idEnt=-1;
+    
     String id = textoID.getText();
     if(id.equals("") || id.equals("Ingrese su identificación"))
         JOptionPane.showMessageDialog(null,"No ingreso ninguna identificación");
     else{
         int num = Integer.parseInt(textoID.getText());
-        idEnt=clientes.find(new Cliente(num));
-            if(idEnt!=-1){
+      
+            if(clientes.find(num)){
                 IDactual = num;
                 jPanel2.setVisible(false);
                 jPanel6.setVisible(true);
@@ -1064,8 +1064,8 @@ public class MenuDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        int num = clientes.find(new Cliente(IDactual));
-        Cliente temp = clientes.remove(num);
+        
+        Cliente temp = clientes.remove( IDactual);
         JOptionPane.showMessageDialog(null, "Se ha eliminado su cuenta: "+temp.getNombre()+ " "+temp.getID());
         jPanel6.setVisible(false);
         jPanel2.setVisible(true);
@@ -1108,24 +1108,18 @@ public class MenuDeInicio extends javax.swing.JFrame {
     private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
         jPanel14.setVisible(true);
         DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
-        model.setRowCount(clientes.size);
+        model.setRowCount((int)clientes.n);
         model.setColumnCount(4);
         String [] n = new String[]{"ID","Nombre","Edad","Genero"};
         model.setColumnIdentifiers(n);
-        Cliente[] temp=new Cliente[clientes.size];
-        for(int i=0;i<temp.length;i++)
-            temp[i]=clientes.removeMin();
+        Cliente[] temp=clientes.obtenerLista();
         for(int i=0;i<temp.length;i++)
         {
-            
             jTable2.setValueAt(temp[i].getID(), i, 0);
             jTable2.setValueAt(temp[i].getNombre(), i, 1);
             jTable2.setValueAt(temp[i].getEdad(), i, 2);
             jTable2.setValueAt(temp[i].getGenero(), i, 3);
-        }
-        for(int i=0;i<temp.length;i++)
-            clientes.insertItem(temp[i]);    
-    }//GEN-LAST:event_jToggleButton13ActionPerformed
+        }}//GEN-LAST:event_jToggleButton13ActionPerformed
 
     private void registerPetAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPetAgeActionPerformed
         // TODO add your handling code here:

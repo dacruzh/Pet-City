@@ -85,14 +85,14 @@ public class Logica {
        
     }
     
-    public static void fillListClientes(PriorityQueueClass<Cliente> clientes){
+    public static void fillListClientes(HashMapPro clientes){
         Cliente Gsus = new Cliente("Daniel", "elgsus", 20, 234500, "Otro");
-        clientes.insertItem(Gsus);
-        int id=0;
+        clientes.insert(Gsus);
+        int id=1;
         int n=15;
         long t0 = System.currentTimeMillis();
         for (int i = 0; i<10000; i++){
-            clientes.insertItem( new Cliente("John", "Doe", n, id, "Otro"));
+            clientes.insert( new Cliente("John", "Doe", n, id, "Otro"));
         id++;
         n=(n+1)%80;
         if(n<=15)
