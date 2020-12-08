@@ -938,7 +938,7 @@ public class MenuDeInicio extends javax.swing.JFrame {
         else{
         int id = Integer.parseInt(idRegisterLabel.getText());
         
-         if(clientes.find(id)){
+         if(!clientes.find(id)){
             String nombre = registerNameLabel.getText();
             if(nombre.equals(""))
                 JOptionPane.showMessageDialog(null, "No escribió ningun nombre.");
@@ -1113,12 +1113,14 @@ public class MenuDeInicio extends javax.swing.JFrame {
         String [] n = new String[]{"ID","Nombre","Edad","Genero"};
         model.setColumnIdentifiers(n);
         Cliente[] temp=clientes.obtenerLista();
-        for(int i=0;i<temp.length;i++)
-        {
+        System.out.println(temp.length);
+        for(int i=0;i<temp.length;i++){
+               if(temp[i]!=null){
             jTable2.setValueAt(temp[i].getID(), i, 0);
             jTable2.setValueAt(temp[i].getNombre(), i, 1);
             jTable2.setValueAt(temp[i].getEdad(), i, 2);
             jTable2.setValueAt(temp[i].getGenero(), i, 3);
+        }
         }}//GEN-LAST:event_jToggleButton13ActionPerformed
 
     private void registerPetAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPetAgeActionPerformed

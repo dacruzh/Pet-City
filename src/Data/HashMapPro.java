@@ -13,7 +13,7 @@ public class HashMapPro {
     Cliente mapa [];
     int a;
     int b;
-    public double n;
+    public int n;
     int m;
     int p;
     public HashMapPro(int m){
@@ -53,7 +53,7 @@ public class HashMapPro {
         return retornado;
     }
     public void rehash(){
-        if(n/mapa.length>=0.5){
+        if(((double)n)/((double)mapa.length)>=0.5){
         Cliente temp[]=new Cliente[2*mapa.length];
          m=temp.length;
          for (int i=0;i<mapa.length;i++) {
@@ -63,15 +63,15 @@ public class HashMapPro {
          mapa=temp;
         }
     }
-    public Cliente[] obtenerLista()
-    { Cliente lista[]=new Cliente[(int)n];
+    public Cliente[] obtenerLista(){ 
+        Cliente lista[] = new Cliente[n];
         int j=0;
         for(int i=0;i<mapa.length;i++){
             if(mapa[i]!=null){
                 lista[j]=mapa[i];
                 j++;
             }
-    }
+        }
         return lista;
     }
 }
