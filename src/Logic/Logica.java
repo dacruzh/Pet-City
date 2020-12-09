@@ -14,6 +14,10 @@ public class Logica {
             System.out.println("Ingrese la edad:");
             i = Menu.tryCatchMenu();
         }
+        System.out.println("Ingrese la especie de la mascota");
+        String especie =reader.next();
+        System.out.println("Ingrese la raza de la mascota");
+        String raza = reader.next();
         int a = -1;
         while(a == -1){
             System.out.println("Oprima 1 si no tiene vacunas o 2 si las tiene.");
@@ -23,7 +27,7 @@ public class Logica {
         if(a == 0) vacunas = false;
         else vacunas = true;
         //reader.close();
-        return new Mascota(i,nombre,vacunas);
+        return new Mascota(i,nombre,vacunas,especie,raza);
         
     }
     
@@ -65,14 +69,14 @@ public class Logica {
     }
     
      public static void fillListPets(PriorityQueueClass<Mascota> petQueue){
-         Mascota storni = new Mascota(1,"Storni",true);
+         Mascota storni = new Mascota(1,"Storni",true,"Felino","Mestizo");
         petQueue.insertItem(storni);
         int n=0;
         boolean vacunas=false;
         
         long t0 = System.currentTimeMillis(); //Comando antes del método
-        for (int i = 0; i<100000000; i++){
-            Mascota prueba = new Mascota(n,"prueba",vacunas);
+        for (int i = 0; i<10000; i++){
+            Mascota prueba = new Mascota(n,"prueba",vacunas,"especiex","razay");
             petQueue.insertItem(prueba);
             n=(n+1)%20;
             if(n%2==0)
@@ -81,7 +85,7 @@ public class Logica {
                 vacunas=true;
         }
         long exTime = System.currentTimeMillis()-t0; //Comando al final del método
-        System.out.println("Llenar heap con 10000 datos: " + exTime); //System.out.pintln() del tiempo de ejecución de ese visaje sabroso
+        System.out.println("Llenar linkedQueue con 10000 datos: " + exTime); //System.out.pintln() del tiempo de ejecución de ese visaje sabroso
        
     }
     
@@ -91,7 +95,7 @@ public class Logica {
         int id=1;
         int n=15;
         long t0 = System.currentTimeMillis();
-        for (int i = 0; i<10000000; i++){
+        for (int i = 0; i<10000; i++){
             clientes.insert( new Cliente("John", "Doe", n, id, "Otro"));
         id++;
         n=(n+1)%80;
@@ -99,7 +103,7 @@ public class Logica {
             n=16;
         }
         long exTime = System.currentTimeMillis()-t0;
-        System.out.println("Llenar Hash con 10000 datos: " + exTime);
+        System.out.println("Llenar stackArray con 10000 datos: " + exTime);
       
     }
     

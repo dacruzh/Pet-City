@@ -10,5 +10,14 @@ package Data;
  * @author ASUS PC
  */
 public class Refugio extends Establecimiento {
-    
+    private int donaciones;
+    public Refugio(){
+       donaciones = 0; 
+    }
+    public int getDonaciones() {
+        return donaciones;
+    }
+    public void setDonaciones(int donaciones) {
+        this.donaciones = donaciones;
+    }
 }

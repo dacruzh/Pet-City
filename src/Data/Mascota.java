@@ -5,14 +5,17 @@ public class Mascota implements Comparable<Mascota>{
     private String nombre;
     private boolean vacunas;
     private int llegada; 
+    private String especie;
+    private String raza;
     private static int n=0; 
 
-    public Mascota(int edad, String nombre, boolean vacunas ) {
+    public Mascota(int edad, String nombre, boolean vacunas, String especie, String raza ) {
         this.edad=edad;
         this.nombre=nombre;
         this.vacunas=vacunas;
         this.llegada=++n;
-        
+        this.especie = especie;
+        this.raza = raza;
     }
     public Mascota(int llegada)
     {
@@ -24,7 +27,12 @@ public class Mascota implements Comparable<Mascota>{
     public String getNombre() {
         return nombre;
     }
-    
+    public String getEspecie() {
+        return especie;
+    }
+    public String getRaza() {
+        return raza;
+    }
     public boolean getVacunas() {
         return vacunas;
     }
@@ -40,7 +48,12 @@ public class Mascota implements Comparable<Mascota>{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
     @Override
     public String toString() {
         return this.nombre+"        "+this.edad+"       "+this.vacunas;
